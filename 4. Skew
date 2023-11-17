@@ -49,3 +49,54 @@ def skew(sequence):
 	#sequence = in_file.readline()	
 	#skew(sequence)
 skew(sequence)
+
+#the skew should achieve a minimum at the position where the reverse half-strand ends and the forward half-strand begins, which is exactly the location of ori
+
+
+def skew(genome):
+
+             skew_i = 0
+
+             skew_list = [skew_i]
+
+             for nuc in genome:
+
+                          if nuc == "G":
+
+                                       skew_i += 1
+
+                          elif nuc == "C":
+
+                                       skew_i -= 1
+
+                          else:
+
+                                       pass
+
+                          skew_list.append(skew_i)
+
+             return skew_list
+
+ 
+
+skew_values = skew(genome)
+
+ 
+
+def minimum_skew(skew_values):
+
+             min_position = []
+
+             for n in range(len(skew_values)):
+
+             if skew_values[n] == min(skew_values):
+
+                          min_position.append(n)
+
+             return min_position
+
+ 
+
+print('The value of the minimum skew is ', min(skew_values),
+
+' and the position with the minimum skew is or are: ', minimum_skew(skew_values))
