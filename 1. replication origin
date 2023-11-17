@@ -1,0 +1,34 @@
+#Hidden Messages in the Replication Origin
+
+Example:
+PatternCount(Text, Pattern)
+  count ← 0
+  for i ← 0 to |Text| − |Pattern|
+    if Text(i, |Pattern|) = Pattern
+      count ← count + 1
+  return count
+
+# R 
+Text <- ""
+Pattern <- ""
+
+PatternCount <- function(Text, Pattern) {
+  count <- 0
+  for (i in 1:(nchar(Text) - nchar(Pattern) + 1)) {
+    if (substr(Text, i, i + nchar(Pattern) - 1) == Pattern) {
+      count <- count + 1
+    }
+  }
+  return(count)
+}
+
+result <- PatternCount(Text, Pattern)
+cat("Number of occurrences:", result, "\n")
+
+#Python
+def PatternCount(Text, Pattern):
+    count = 0
+    for i in range(len(Text) - len(Pattern) + 1):
+        if Text[i:i+len(Pattern)] == Pattern:
+            count += 1
+    return count
