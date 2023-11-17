@@ -1,0 +1,20 @@
+Note that we can compute Skewi+1(Genome) from Skewi(Genome) according to the nucleotide in position i of Genome. 
+If this nucleotide is G, then Skewi+1(Genome) = Skewi(Genome) + 1; 
+if this nucleotide is C, then Skewi+1(Genome)= Skewi(Genome) – 1; 
+otherwise, Skewi+1(Genome) = Skewi(Genome).
+
+def skew(genome):
+    skew_i = 0
+    skew_list = [skew_i]
+    for nuc in genome:
+        if nuc == "G":
+            skew_i += 1
+        elif nuc == "C":
+            skew_i -= 1
+        skew_list.append(skew_i)
+    return skew_list
+
+genome = "GAGCCACCGCGATA"
+skew_values = skew(genome)
+skew_string = ' '.join(map(str, skew_values))
+print(skew_string)
