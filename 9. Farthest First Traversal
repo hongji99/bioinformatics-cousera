@@ -1,0 +1,34 @@
+import random
+import math
+
+def distance(point1, point2):
+    """Calculate the Euclidean distance between two points."""
+    squared_distance = sum((p1 - p2) ** 2 for p1, p2 in zip(point1, point2))
+    return math.sqrt(squared_distance)
+
+def FarthestFirstTraversal(Data, k):
+    """Apply Farthest-First Traversal to select k initial centers."""
+    Centers = [Data[0]]  # Start with the first point from Data as the initial center
+    
+    while len(Centers) < k:
+        farthest_distance = float('-inf')
+        farthest_point = None
+        
+        for data_point in Data:
+            min_distance = min(distance(data_point, center) for center in Centers)
+            
+            if min_distance > farthest_distance:
+                farthest_distance = min_distance
+                farthest_point = data_point
+        
+        Centers.append(farthest_point)
+    
+    return Centers
+
+# Example usage
+k = 3
+m = 2
+Data = [(0.0, 0.0), (5.0, 5.0), (0.0, 5.0), (1.0, 1.0), (2.0, 2.0), (3.0, 3.0), (1.0, 2.0)]
+
+centers = FarthestFirstTraversal(Data, k)
+print("Selected centers:", centers)
